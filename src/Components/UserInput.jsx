@@ -1,22 +1,6 @@
 import { useState } from "react";
 
-export default function UserInput() {
-  const [userInput, setuserInput] = useState({
-    initialinvestment: 1000,
-    annualinvestment: 1200,
-    expectedReturn: 6,
-    duration: 10,
-  });
-
-  function handelchange(inputId, newValue) {
-    setuserInput((prevUserInput) => {
-      return {
-        ...prevUserInput,
-        [inputId]: newValue,
-      };
-    });
-  }
-
+export default function UserInput({ onChange, userInput }) {
   return (
     <section id="user-input">
       <div className="input-group">
@@ -25,9 +9,9 @@ export default function UserInput() {
           <input
             type="number"
             required
-            value={userInput.initialinvestment}
+            value={userInput.initialInvestment}
             onChange={(event) =>
-              handelchange("initialinvestment", event.target.value)
+              onChange("initialInvestment", event.target.value)
             }
           />
         </p>
@@ -36,9 +20,9 @@ export default function UserInput() {
           <input
             type="number"
             required
-            value={userInput.annualinvestment}
+            value={userInput.annualInvestment}
             onChange={(event) =>
-              handelchange("annualinvestment", event.target.value)
+              onChange("annualInvestment", event.target.value)
             }
           />
         </p>
@@ -50,9 +34,7 @@ export default function UserInput() {
             type="number"
             required
             value={userInput.expectedReturn}
-            onChange={(event) =>
-              handelchange("expectedReturn", event.target.value)
-            }
+            onChange={(event) => onChange("expectedReturn", event.target.value)}
           />
         </p>
         <p>
@@ -61,7 +43,7 @@ export default function UserInput() {
             type="number"
             required
             value={userInput.duration}
-            onChange={(event) => handelchange("duration", event.target.value)}
+            onChange={(event) => onChange("duration", event.target.value)}
           />
         </p>
       </div>
